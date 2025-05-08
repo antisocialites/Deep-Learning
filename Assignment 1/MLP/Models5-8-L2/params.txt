@@ -1,0 +1,2 @@
+Best MLP: (20, (64, 32, 16), 0.003, 'relu', 0.0001) -> 0.06794282831251622
+best_k, layer_sizes, lr, activation, l2_strength --> mse

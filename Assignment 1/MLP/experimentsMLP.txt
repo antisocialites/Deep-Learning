@@ -1,0 +1,32 @@
+k_values = range(10, 31, 5)
+
+- 1 layer with 10 neurons, best k = 20 with loss = 0.204 (no optimizer)
+
+- 2 layers with 16, 8, neurons respectively, (no optimizer)
+k=10, avg val loss=0.1890
+k=15, avg val loss=0.1757
+k=20, avg val loss=0.1723
+*k=25, avg val loss=0.1684*
+k=30, avg val loss=0.2271
+
+Best k: 25
+
+- 3 layers 32/16/8 neurons respectively
+k=10, avg val loss=0.1118
+k=15, avg val loss=0.1335
+k=20, avg val loss=0.1058
+k=25, avg val loss=0.1526
+k=30, avg val loss=0.1335
+
+Best k: 20
+
+- 3 layers 64/32/16
+k=10, avg val loss=0.1081
+k=15, avg val loss=0.0993
+k=20, avg val loss=0.0848
+k=25, avg val loss=0.1116
+k=30, avg val loss=0.1415
+
+Best k: 20
+
+optimizer choice affects what value is best_k: adam is higher than rmsprop?
