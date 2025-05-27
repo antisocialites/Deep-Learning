@@ -30,3 +30,4 @@ k=30, avg val loss=0.1415
 Best k: 20
 
 optimizer choice affects what value is best_k: adam is higher than rmsprop?
+
