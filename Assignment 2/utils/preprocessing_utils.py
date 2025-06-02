@@ -175,6 +175,8 @@ def prepare_ffnn_data(X):
     return X.mean(axis=(2, 3))  # average over height and width
 
 
+
+
 def make_sequences(
     data, 
     time_per_snapshot=32,       # e.g., 0.5s at 50 Hz
