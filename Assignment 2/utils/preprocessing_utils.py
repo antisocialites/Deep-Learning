@@ -134,6 +134,40 @@ def preprocess_meg_data(
         else:
             raise ValueError("downsample_method must be 'slice' or 'decimate'")
 
+    return arr, means, stds
+
+def preprocess_meg_testdata(
+    arr: np.ndarray,
+    means: np.ndarray,
+    stds: np.ndarray,
+    *,
+    axis: int = 1,
+    downsample_method: Literal["slice", "decimate"] = "decimate",
+    downsample_factor: Optional[int] = None,
+    target_rate: Optional[int] = None,
+    orig_rate: int = 2034,
+    eps: float = 1e-12
+) -> np.ndarray:
+    """
+    Apply training normalization and downsample test MEG data.
+    """
+    arr = (arr - means) / (stds + eps)
+
+    if downsample_factor is None:
+        if target_rate is None:
+            raise ValueError("Specify either downsample_factor or target_rate")
+        downsample_factor = int(round(orig_rate / target_rate))
+
+    if downsample_factor > 1:
+        if downsample_method == "slice":
+            slicer = [slice(None)] * arr.ndim
+            slicer[axis] = slice(None, None, downsample_factor)
+            arr = arr[tuple(slicer)]
+        elif downsample_method == "decimate":
+            arr = decimate(arr, downsample_factor, axis=axis, zero_phase=True)
+        else:
+            raise ValueError("downsample_method must be 'slice' or 'decimate'")
+
     return arr
 
 def cossim_cluster_multi_task(task_list, n_clusters=5):
